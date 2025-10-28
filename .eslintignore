@@ -1,0 +1,11 @@
+node_modules/
+__mocks__/
+coverage/
+build/
+dist/
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+jest.config.js
+jest.setup.js
