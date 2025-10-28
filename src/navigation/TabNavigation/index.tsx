@@ -17,6 +17,7 @@ const TabNavigation = () => {
       screenOptions={{
         tabBarStyle: {
           backgroundColor: themeConfig.colors.headerBg,
+          paddingVertical: 16,
         },
         tabBarIndicatorStyle: {
           backgroundColor: '#68DDBA',

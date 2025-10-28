@@ -10,8 +10,15 @@ const Header = () => {
   const themeConfig = useTheme();
 
   return (
-    <SafeAreaView style={{backgroundColor:themeConfig.colors.headerBg}}>
-      <View style={[styles.headerStyle, {backgroundColor:themeConfig.colors.headerBg}]}>
+    <SafeAreaView
+      style={{ backgroundColor: themeConfig.colors.headerBg, marginTop: 22 }}
+    >
+      <View
+        style={[
+          styles.headerStyle,
+          { backgroundColor: themeConfig.colors.headerBg },
+        ]}
+      >
         <Image
           source={getThemedImage(themeConfig.isDark ? 'dark' : 'light', 'logo')}
           style={styles.logo}
