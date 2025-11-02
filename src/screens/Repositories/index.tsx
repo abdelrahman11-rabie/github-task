@@ -29,12 +29,18 @@ const Repositories = () => {
 
   const handleSelectLanguage = useCallback((language: string) => {
     setSelectedLanguage(language);
-    console.log('Selected language:', language);
   }, []);
 
   const handleSelectDate = useCallback((date: string) => {
     setSelectedDate(date);
-    console.log('Selected date:', date);
+  }, []);
+
+  const handleCloseLanguageModal = useCallback(() => {
+    setModalVisible(false);
+  }, []);
+
+  const handleCloseDateModal = useCallback(() => {
+    setDateModal(false);
   }, []);
 
   return (
@@ -87,9 +93,15 @@ const Repositories = () => {
           ]}
           onPress={() => setDateModal(true)}
         >
-          <TextView size={14} fontFamily="Silka-Medium" color={themeConfig.colors.text}>
+          <TextView
+            size={14}
+            fontFamily="Silka-Medium"
+            color={themeConfig.colors.text}
+          >
             Date :{' '}
-            <TextView color={themeConfig.colors.text}>{moment(selectedDate).format('D MMM YY')}</TextView>
+            <TextView color={themeConfig.colors.text}>
+              {moment(selectedDate).format('D MMM YY')}
+            </TextView>
           </TextView>
         </Pressable>
       </View>
@@ -118,16 +130,20 @@ const Repositories = () => {
         contentContainerStyle={styles.listContent}
       />
 
-      <DateModal
-        visible={dateModal}
-        onClose={() => setDateModal(false)}
-        onSelectDate={handleSelectDate}
-      />
-      <LanguageModal
-        visible={modalVisible}
-        onClose={() => setModalVisible(false)}
-        onSelectLanguage={handleSelectLanguage}
-      />
+      {dateModal && (
+        <DateModal
+          visible={dateModal}
+          onClose={handleCloseDateModal}
+          onSelectDate={handleSelectDate}
+        />
+      )}
+      {modalVisible && (
+        <LanguageModal
+          visible={modalVisible}
+          onClose={handleCloseLanguageModal}
+          onSelectLanguage={handleSelectLanguage}
+        />
+      )}
     </View>
   );
 };

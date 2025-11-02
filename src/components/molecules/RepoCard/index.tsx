@@ -20,19 +20,29 @@ const RepoCard: React.FC<CardProps> = ({ isRepoCard, item }) => {
 
   return (
     <Pressable
-      style={[styles.container,{backgroundColor:themeConfig.colors.headerBg}]}
+      style={[
+        styles.container,
+        { backgroundColor: themeConfig.colors.headerBg },
+      ]}
       onPress={() => Linking.openURL(item?.html_url)}
     >
       {!isRepoCard && (
         <View style={styles.cardHeader}>
-          <TextView size={14} fontFamily="Silka-Medium" color={themeConfig.colors.text}>
+          <TextView
+            size={14}
+            fontFamily="Silka-Medium"
+            color={themeConfig.colors.text}
+          >
             Trending repository
           </TextView>
 
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
             <View style={{ flexDirection: 'row', gap: 4 }}>
               <Feather name="star" size={18} color={COLORS.lightBlue} />
-              <TextView color={themeConfig.colors.text} fontFamily="Silka-Medium">
+              <TextView
+                color={themeConfig.colors.text}
+                fontFamily="Silka-Medium"
+              >
                 Star
               </TextView>
             </View>
@@ -47,7 +57,9 @@ const RepoCard: React.FC<CardProps> = ({ isRepoCard, item }) => {
           <Feather name="file" size={22} color={COLORS.lightBlue} />
           <TextView
             numberOfLines={2}
-            color={themeConfig.isDark ? themeConfig.colors.text : COLORS.darkBlue}
+            color={
+              themeConfig.isDark ? themeConfig.colors.text : COLORS.darkBlue
+            }
             size={22}
             fontFamily="Silka-Bold"
           >
@@ -71,20 +83,36 @@ const RepoCard: React.FC<CardProps> = ({ isRepoCard, item }) => {
         <TextView color={themeConfig.colors.text}>
           Updated : {formatDate(item?.updated_at)} hours ago
         </TextView>
-        <TextView color={themeConfig.colors.text} style={{ marginLeft: 12 }}> {item?.language} </TextView>
+        <TextView color={themeConfig.colors.text} style={{ marginLeft: 12 }}>
+          {' '}
+          {item?.language}{' '}
+        </TextView>
       </View>
 
       {isRepoCard && (
         <View style={styles.bottomContainer}>
-          <TextView color={themeConfig.colors.text} style={{ marginLeft: 12 }}> {item?.language} </TextView>
+          <TextView color={themeConfig.colors.text} style={{ marginLeft: 12 }}>
+            {' '}
+            {item?.language}{' '}
+          </TextView>
           <View style={styles.bottomItem}>
             <Feather name="star" size={18} color={COLORS.lightBlue} />
-            <TextView  color={themeConfig.colors.text}> {item.stargazers_count} </TextView>
+            <TextView color={themeConfig.colors.text}>
+              {' '}
+              {item.stargazers_count}{' '}
+            </TextView>
           </View>
 
           <View style={[styles.bottomItem, { marginLeft: 12 }]}>
-            <FontAwesome6 name="code-fork" iconStyle="solid" color={themeConfig.isDark ? COLORS.lightBlue : COLORS.darkBlue} />
-            <TextView color={themeConfig.colors.text}> {item?.forks_count} </TextView>
+            <FontAwesome6
+              name="code-fork"
+              iconStyle="solid"
+              color={themeConfig.isDark ? COLORS.lightBlue : COLORS.darkBlue}
+            />
+            <TextView color={themeConfig.colors.text}>
+              {' '}
+              {item?.forks_count}{' '}
+            </TextView>
           </View>
         </View>
       )}

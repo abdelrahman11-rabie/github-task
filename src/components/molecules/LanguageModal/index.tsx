@@ -145,4 +145,4 @@ const LanguageModal: React.FC<LanguageModalProps> = ({
   );
 };
 
-export default LanguageModal;
+export default React.memo(LanguageModal);

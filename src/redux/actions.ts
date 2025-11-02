@@ -52,24 +52,29 @@ export const fetchRepos = (params: FetchReposParams) => {
     dispatch(fetchReposRequest());
 
     try {
-      //  string dynamically
       const {
         perPage = 10,
         language = 'javascript',
         date = '2019-01-10',
       } = params;
-      const query = `created:>${date}+language:${language}`;
 
-      const response = await fetch(
-        `${BASE_URL}?q=${query}&per_page=${perPage}&sort=stars&order=desc`,
-      );
+      const params_obj = new URLSearchParams({
+        q: `created:>${date} language:${language}`,
+        per_page: perPage.toString(),
+        sort: 'stars',
+        order: 'desc',
+      });
+
+      const queryString = params_obj.toString().replace(/%20/g, '+');
+      const url = `${BASE_URL}?${queryString}`;
+
+      const response = await fetch(url);
 
       if (!response.ok) {
         throw new Error('Failed to fetch repositories');
       }
 
       const data = await response.json();
-      console.log(data, 'Fetched data from Redux', { language, date, perPage });
       dispatch(fetchReposSuccess(data));
     } catch (error) {
       const errorMessage =

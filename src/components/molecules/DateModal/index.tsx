@@ -49,4 +49,4 @@ const DateModal: React.FC<DateModalProps> = ({
   );
 };
 
-export default DateModal;
+export default React.memo(DateModal);

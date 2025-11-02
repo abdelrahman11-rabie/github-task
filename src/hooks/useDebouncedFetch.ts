@@ -10,14 +10,13 @@ export const useDebouncedFetch = (
 ) => {
   const dispatch = useDispatch();
   const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  console.log(language);
 
   useEffect(() => {
-    // Clear previous timer
     if (debounceTimerRef.current) {
       clearTimeout(debounceTimerRef.current);
     }
 
-    // Set new timer
     debounceTimerRef.current = setTimeout(() => {
       dispatch(
         fetchRepos({
